@@ -4,16 +4,18 @@ require './lib/node'
 
 class NodeTest < Minitest::Test
 
-  def test_it_exists
-    assert Node.new("plop")
-  end
-
-  def test_return_value_of_data
+  def test_node_exists
     node = Node.new("plop")
+    assert_equal Node, node.class
     assert_equal "plop", node.data
   end
 
-  def test_return_value_of_next_node
+  def test_a_node_can_hold_different_data
+    node = Node.new("boop")
+    assert_equal "boop", node.data
+  end
+
+  def test_next_node_is_nil_by_default
     node = Node.new("plop")
     assert_equal nil, node.next_node
   end
