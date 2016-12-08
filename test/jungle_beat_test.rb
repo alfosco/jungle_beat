@@ -38,4 +38,13 @@ class JungleBeatTest < Minitest::Test
     assert_equal 3, jb.count
   end
 
+  def test_play_plays_data_from_nodes_as_audio
+    jb = JungleBeat.new
+    jb.append("deep doo ditt woo hoo shu")
+
+    assert_equal 6, jb.count
+    assert_equal 6, jb.list.count
+    jb.play #plays the sound of string passed into append
+  end
+
 end
