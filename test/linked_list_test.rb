@@ -6,25 +6,21 @@ class LinkedListTest < Minitest::Test
 
   def test_it_exists
     list = LinkedList.new
-    
     assert_equal LinkedList, list.class
   end
 
   def test_head_is_initialized_as_nil
     list = LinkedList.new
-
     assert_equal nil, list.head
   end
 
   def test_append_has_return_value
     list = LinkedList.new
-
     assert_equal "doop", list.append("doop")
   end
 
   def test_append_returns_different_values
     list = LinkedList.new
-
     assert_equal "bop", list.append("bop")
   end
 
