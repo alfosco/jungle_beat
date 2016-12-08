@@ -13,20 +13,32 @@ class LinkedList
 
   def append(data)
     @count += 1
+    @head
     if @head == nil
       @head = Node.new(data)
-    elsif head.next_node == nil
-      head.next_node = Node.new(data)
     else
-      until head.next_node == nil
-        head.next_node = Node.new(data)
+      until current_node.next_node == nil
+        current_node = current_node.next_node
       end
+      current_node.next_node = Node.new(data)
     end
-    data
+    # @count += 1
+    # current_node = @head
+    # if current_node == nil
+    #   current_node = Node.new(data)
+    # elsif current_node.next_node == nil
+    #   current_node.next_node = Node.new(data)
+    # else
+    #   until current_node.next_node == nil
+    #     current_node.next_node = Node.new(data)
+    #   end
+    # end
+    # data
   end
 
   def to_string
     current_node = @head
+    #binding.pry
     data_array = Array.new
     data_array << current_node.data
       until current_node.next_node == nil
