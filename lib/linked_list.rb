@@ -26,11 +26,12 @@ class LinkedList
   end
 
   def to_string
+    current_node = @head
     data_array = Array.new
-    data_array << head.data
-      until head.next_node == nil
-        @head = head.next_node
-        data_array << head.data
+    data_array << current_node.data
+      until current_node.next_node == nil
+        current_node = current_node.next_node
+        data_array << current_node.data
       end
     data_array.join(" ")
   end
@@ -54,7 +55,41 @@ class LinkedList
     temp_list = current_node.next_node
     current_node.next_node = new_node
     current_node.next_node.next_node = temp_list
+    data
   end
 
+  def find(position, num_of_data)
+    index_count = 0
+    current_node = @head
+    data_array = Array.new
+    until index_count == position
+      index_count += 1
+      current_node = current_node.next_node
+    end
+    num_of_data.times do
+      data_array << current_node.data
+      current_node = current_node.next_node
+    end
+    data_array.join(" ")
+  end
+
+  def include?(data)
+    current_node = @head
+    until current_node.data == data
+      current_node = current_node.next_node
+      return false if current_node.next_node.nil?
+    end
+    true
+  end
+
+  def pop
+    current_node = @head
+    until current_node.next_node.next_node == nil
+      current_node = current_node.next_node
+    end
+    pop_data = current_node.next_node.data
+    current_node.next_node = nil
+    pop_data
+  end
 
 end

@@ -104,4 +104,68 @@ class LinkedListTest < Minitest::Test
     assert_equal 4, list.count
   end
 
+  def test_it_finds_a_specific_data_value
+    list = LinkedList.new
+    list.append("bloop")
+    list.append("wop")
+    list.prepend("ziggy")
+    list.insert(2, "zap")
+    list.prepend("boo")
+
+    assert_equal "boo ziggy bloop zap wop", list.to_string
+    assert_equal "bloop", list.find(2, 1)
+  end
+
+  def test_it_finds_multiple_data_values
+    list = LinkedList.new
+    list.append("bloop")
+    list.append("wop")
+    list.prepend("ziggy")
+    list.insert(2, "zap")
+    list.prepend("boo")
+
+    assert_equal "boo ziggy bloop zap wop", list.to_string
+    assert_equal "zap wop", list.find(3, 2)
+  end
+
+  def test_it_includes_a_data_value
+    list = LinkedList.new
+    list.append("bloop")
+    list.append("wop")
+    list.prepend("ziggy")
+    list.insert(2, "zap")
+    list.prepend("boo")
+
+    assert_equal "boo ziggy bloop zap wop", list.to_string
+    assert list.include?("zap")
+    refute list.include?("hello")
+  end
+
+  def test_pop_removes_last_node_in_list
+    list = LinkedList.new
+    list.append("bloop")
+    list.append("wop")
+    list.prepend("ziggy")
+    list.insert(2, "zap")
+    list.prepend("boo")
+
+    assert_equal "boo ziggy bloop zap wop", list.to_string
+    assert_equal "wop", list.pop
+    assert_equal "boo ziggy bloop zap", list.to_string
+  end
+
+  def test_popping_a_list_more_than_once
+    list = LinkedList.new
+    list.append("bloop")
+    list.append("wop")
+    list.prepend("ziggy")
+    list.insert(2, "zap")
+    list.prepend("boo")
+
+    assert_equal "boo ziggy bloop zap wop", list.to_string
+    assert_equal "wop", list.pop
+    assert_equal "zap", list.pop
+    assert_equal "boo ziggy bloop", list.to_string
+  end
+
 end
